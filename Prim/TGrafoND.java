@@ -95,4 +95,45 @@ public class TGrafoND {
         System.out.println("\n\nfim da impressao do grafo.");
     }
 
+	/* Algoritmo do slide
+	
+	- Constrói uma subárvore que se inicia unindo um vértice qualquer (1) a seu vizinho mais próximo;
+	- No início cada vértice é uma subárvore, escolhendo cada um deles para iniciar o processo;
+	- Seja Ti  V o conjunto de vértices da subárvore na iteração i e seja (v, w) | v  Ti, w  V – Ti a aresta de menor valor entre V – Ti e Ti
+	- Unem-se o vértice w e a aresta (v,w) à subárvore vigente, cujo conjunto de vértices se torna: Ti+1 = Ti  {w}
+	- O processo termina quando atingimos todos os vértices (Tn = V) 
+
+Algoritmo de PRIM
+Início <dados: Grafo G = (V, E) >
+valor = ∞; / / auxiliar na troca da melhor aresta
+custo = 0; / / armazena o custo total da árvore
+T = { 1 }; / / Começa a montar a árvore a partir do vértice 1
+E = nulo / A árvore não possui nenhuma aresta
+PRIM( T ); / / Inicia o algoritmo de Prim
+Fim.
+
+
+Procedimento PRIM (T);
+para todo k e T faça / / para todo vértice k pertencente a árvore T
+  para todo i e V - T faça / / procura a aresta menor aresta em V-T
+  / / Se alguma aresta é menor do que a encontrada até o momento
+   se vki < valor então
+    // atualiza o valor, o vértice interno a árvore (vint) e externo (vext)
+    valor  vki ; vint  k; vext  i;
+   fim-se
+  fim-para
+fim-para / / atualiza o custo, insere o novo vértice vext em T
+ custo ← custo + valor; T  T  { vext };
+ E’  E’  { (vext, vint ) }; valor  ∞; / / insere a nova aresta
+ se T  V então PRIM (T); / / se a árvore não está completa chama PRIM novamente
+fim-procedimento
+	*/
+	public void prim() {
+		float valor = Float.POSITIVE_INFINITY;
+		float custo = 0;
+		int T[] = new int[n];
+		int E[] = new int[n-1];
+		
+
+	}
 }
