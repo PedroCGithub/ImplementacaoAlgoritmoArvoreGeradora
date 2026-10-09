@@ -1,4 +1,4 @@
-package GrafoNDFloyd;
+package Prim;
 
 
 public class TGrafoND {
@@ -17,7 +17,7 @@ public class TGrafoND {
 	    this.adj = new float [n+1][n+1];
 
 	    // Inicia a matriz com zeros
-		for(int i = 1; i< n; i++)
+		for(int i = 1; i<= n; i++)
 			for(int j = 1; j<= n; j++)
 				this.adj[i][j]= Float.POSITIVE_INFINITY;	
 	}
