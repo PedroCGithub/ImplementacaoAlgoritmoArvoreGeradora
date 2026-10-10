@@ -24,6 +24,7 @@ public class TesteGrafoMatriz {
 
 		System.out.println("Grafo original do primeiro exemplo");
 		g.show();
+		g.prim();
 
 		// Cria um grafo com 6 vértices
 		// Usando o exemplo da atividade solicitada anteriormente do arquivo
@@ -52,5 +53,6 @@ public class TesteGrafoMatriz {
 		
 		System.out.println("\nGrafo original do segundo exemplo");
 		g2.show();
+		g2.prim();
 	}
 }

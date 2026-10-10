@@ -6,6 +6,13 @@ public class TGrafoND {
 	private	int n; // quantidade de vértices
 	private	int m; // quantidade de arestas
 	private	float adj[][]; //matriz de adjacência com float
+	
+	private float custo; // custo para o prim
+	private int T[]; //array para guardar os vertices do prim
+	private int qtdT; // auxiliar
+	private int E[][]; //array para guarard arestas
+	private int qtdE; // aurxiliar
+	
 	// Métodos Públicos
 	public TGrafoND( int n) {  // construtor
 	    this.n = n;
@@ -129,11 +136,68 @@ fim-para / / atualiza o custo, insere o novo vértice vext em T
 fim-procedimento
 	*/
 	public void prim() {
-		float valor = Float.POSITIVE_INFINITY;
-		float custo = 0;
-		int T[] = new int[n];
-		int E[] = new int[n-1];
-		
+		// declaraçao de quase tudo que precisa
+		custo = 0;
+		T = new int[n];
+		E = new int[n - 1][2];
+		qtdT = 0;
+		qtdE = 0;
 
+		T[qtdT++] = 1; // T = { 1 }
+		primLOOP(); // PRIM(T)
+
+		// saida
+		System.out.println("Custo total: " + custo);
+		System.out.println("Arestas da árvore:");
+		for (int j = 0; j < qtdE; j++) {
+			System.out.println("(" + E[j][1] + ", " + E[j][0] + ")");
+		}
+	}
+
+	private void primLOOP() {
+		// declaracao do que faltava
+		int vint = -1;
+		int vext = -1;
+		float valor = Float.POSITIVE_INFINITY;
+
+		// para todo k em T
+		for (int j = 0; j < qtdT; j++) {
+			int k = T[j];
+
+			// para todo i em V - T
+			for (int i = 1; i <= n; i++) {
+
+				// descobre se i já pertence a T
+				boolean estaEmT = false;
+				for (int a = 0; a < qtdT; a++) {
+					if (T[a] == i) {
+						estaEmT = true;
+					}
+				}
+
+				// i está em V - T e a aresta é menor que a melhor até agora
+				if (!estaEmT && adj[k][i] < valor) {
+					valor = adj[k][i];
+					vint = k;
+					vext = i;
+				}
+			}
+		}
+
+		// não dá pra chegar nos vértices restantes
+		if (vext == -1) {
+			System.out.println("Grafo desconexo");
+			return;
+		}
+
+		custo = custo + valor;
+		T[qtdT++] = vext;   // T = T U {vext}
+		E[qtdE][0] = vext;  // E' = E' U {(vext, vint)}
+		E[qtdE][1] = vint;
+		qtdE++;
+
+		if (qtdT < n) {    // árvore incompleta, chama de novo
+			primLOOP();
+		}
 	}
 }
